@@ -5,13 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.json.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -32,8 +34,16 @@ public class IndexController {
         String unpNumber = request.getParameter("unpNumber");
         System.out.println(unpNumber);
         try {
-            String resp = sendGET(unpNumber);
-            model.addAttribute("message", resp);
+            String jsonString = sendGET(unpNumber);
+            JSONObject obj = new JSONObject(jsonString);
+            String name = obj.getJSONObject("ROW").getString("VNAIMP");
+            String address = obj.getJSONObject("ROW").getString("VPADRES");
+            String reg = obj.getJSONObject("ROW").getString("DREG");
+            String status = obj.getJSONObject("ROW").getString("VKODS");
+            model.addAttribute("name",name);
+            model.addAttribute("address",address);
+            model.addAttribute("reg",reg);
+            model.addAttribute("status",status);
         } catch (IOException e) {
             System.out.println("ERROR");
             e.printStackTrace();
@@ -41,7 +51,7 @@ public class IndexController {
 
         return "Index";
     }
-
+//VNAIMP,VPADRES,DREG,VKODS
     private static String sendGET(String unpNumber) throws IOException {
         String message = null;
         URL obj = new URL(UNP_GET+"unp="+unpNumber+"&charset=UTF-8&type=json");

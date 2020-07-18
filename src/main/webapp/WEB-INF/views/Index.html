@@ -7,20 +7,17 @@
 <body>
     <form action="/" method="post">
         <p><label>UNP:</label></p>
-        <p><input type="text" id="unp" minlength="9" maxlength="9" name="unpNumber" required></p>
+        <p><input type="text" id="unpNumber" minlength="9" maxlength="9" name="unpNumber" required></p>
         <input type="submit" value="Submit" >
     </form>
 
-    <p th:text="${message}"></p>
-
-
     <p><label>Full name of the payer:</label></p>
-    <p><input type="text" id="namePayer" readonly></p>
+    <p th:text="${name}"></p>
     <p><label>Address:</label></p>
-    <p><input type="text" id="address" readonly></p>
+    <p th:text="${address}"></p>
     <p><label>Date of registration:</label></p>
-    <p><input type="text" id="dateReg" readonly></p>
+    <p th:text="${reg}"></p>
     <p><label>Status:</label></p>
-    <p><input type="text" id="status" readonly></p>
+    <p th:text="${status}"></p>
 </body>
 </html>
