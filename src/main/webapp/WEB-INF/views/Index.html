@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Hello</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <p><label>UNP:</label></p>
+        <p><input type="text" id="unp" minlength="9" maxlength="9" name="unpNumber" required></p>
+        <input type="submit" value="Submit" >
+    </form>
+
+    <p th:text="${message}"></p>
+
+
+    <p><label>Full name of the payer:</label></p>
+    <p><input type="text" id="namePayer" readonly></p>
+    <p><label>Address:</label></p>
+    <p><input type="text" id="address" readonly></p>
+    <p><label>Date of registration:</label></p>
+    <p><input type="text" id="dateReg" readonly></p>
+    <p><label>Status:</label></p>
+    <p><input type="text" id="status" readonly></p>
+</body>
+</html>
